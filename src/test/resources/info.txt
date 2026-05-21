@@ -1,0 +1,36 @@
+1. Install Node.js
+Check if it was installed correctly:
+node --version
+npm --version
+
+2. Install Appium server
+npm install -g appium
+appium --version
+appium driver install uiautomator2
+
+3. Install Android studio
+https://developer.android.com/studio
+Make sure during installation these are checked:
+-Android Studio
+-Android Virtual Device (emulator)
+
+4. Set env variables (Windows below)
+-ANDROID_HOME C:\Users\YourName\AppData\Local\Android\Sdk
+-JAVA_HOME your JDK 21 path, e.g. C:\Program Files\Java\jdk-21
+
+5. Add to PATH variable:
+%ANDROID_HOME%\platform-tools
+%ANDROID_HOME%\emulator
+%ANDROID_HOME%\tools
+
+6. Verify everything:
+appium driver doctor uiautomator2
+adb --version
+
+7. Open Android Studio and create a new virtual device (AVD) with the desired configuration (Phone, system etc.).
+- start the emulator
+- see if it is running in the terminal:
+adb devices
+
+8. Run Appium server
+appium - leave it running in terminal
