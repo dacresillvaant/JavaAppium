@@ -2,6 +2,7 @@ package com.dacresillvaant.appium.tests;
 
 import com.dacresillvaant.appium.driver.DriverFactory;
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
@@ -27,5 +28,9 @@ public abstract class BaseTest {
         } catch (NoSuchElementException e) {
             // dialog didn't appear, continue
         }
+    }
+
+    protected AndroidDriver getDriver() {
+        return (AndroidDriver) DriverFactory.getDriver();
     }
 }

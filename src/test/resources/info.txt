@@ -34,3 +34,10 @@ adb devices
 
 8. Run Appium server
 appium - leave it running in terminal
+
+9. Download sample app
+- https://github.com/saucelabs/my-demo-app-android
+- put the apk file in src/test/resources folder
+
+10. Download Appium inspector
+https://github.com/appium/appium-inspector/releases
