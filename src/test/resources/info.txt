@@ -16,7 +16,7 @@ Make sure during installation these are checked:
 
 4. Set env variables (Windows below)
 -ANDROID_HOME C:\Users\YourName\AppData\Local\Android\Sdk
--JAVA_HOME your JDK 21 path, e.g. C:\Program Files\Java\jdk-21
+-JAVA_HOME your JDK path, e.g. C:\Program Files\Java\jdk-21
 
 5. Add to PATH variable:
 %ANDROID_HOME%\platform-tools

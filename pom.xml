@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.dacresillvaant</groupId>
+  <groupId>com.dacresillvaant.appium</groupId>
   <artifactId>JavaAppium</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
@@ -22,6 +22,7 @@
       <testng.version>7.12.0</testng.version>
       <slf4j.version>2.0.18</slf4j.version>
       <maven.surefire.version>3.5.5</maven.surefire.version>
+      <lombok.version>1.18.46</lombok.version>
 
   </properties>
 
@@ -45,6 +46,13 @@
           <groupId>org.slf4j</groupId>
           <artifactId>slf4j-simple</artifactId>
           <version>${slf4j.version}</version>
+      </dependency>
+
+      <!-- Source: https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>${lombok.version}</version>
       </dependency>
   </dependencies>
 

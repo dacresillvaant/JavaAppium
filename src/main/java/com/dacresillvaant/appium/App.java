@@ -1,4 +1,4 @@
-package com.dacresillvaant;
+package com.dacresillvaant.appium;
 
 /**
  * Hello world!
