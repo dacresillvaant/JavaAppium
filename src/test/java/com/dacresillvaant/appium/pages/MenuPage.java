@@ -20,6 +20,10 @@ public class MenuPage extends BasePage {
         super(driver);
     }
 
+    public boolean isLogOutMenuItemDisplayed() {
+        return isDisplayed(logOutMenuItem);
+    }
+
     public void openHamburgerMenu() {
         WaitUtils.waitForClickability(driver, hamburgerMenu, 3000).click();
     }

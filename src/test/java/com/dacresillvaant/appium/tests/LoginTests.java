@@ -1,26 +1,24 @@
 package com.dacresillvaant.appium.tests;
 
-import com.dacresillvaant.appium.driver.DriverFactory;
 import com.dacresillvaant.appium.pages.LoginPage;
 import com.dacresillvaant.appium.pages.MenuPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginTest extends BaseTest {
+public class LoginTests extends BaseTest {
 
-    @Test
-    public void testDriverInitialization() {
-        Assert.assertNotNull(DriverFactory.getDriver());
-    }
-
-    @Test
+    @Test(testName = "Should successfully log in and check that 'Log out' menu item is visible")
     public void testSuccessfulLogin() {
+//      given
         MenuPage menuPage = new MenuPage(getDriver());
-        menuPage.goToLoginPage();
-
         LoginPage loginPage = new LoginPage(getDriver());
-        loginPage.login("admin", "admin");
 
+//      when
+        menuPage.goToLoginPage();
+        loginPage.login("admin", "admin");
         menuPage.openHamburgerMenu();
+
+//      expect
+        Assert.assertTrue(menuPage.isLogOutMenuItemDisplayed(), "Logout menu item should be visible after successful login");
     }
 }
