@@ -1,29 +1,31 @@
 package com.dacresillvaant.appium.pages;
 
+import com.dacresillvaant.appium.utils.WaitUtils;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 
-public class MenuPage {
+public class MenuPage extends BasePage {
 
     @AndroidFindBy(accessibility = "View menu")
     private WebElement hamburgerMenu;
 
     @AndroidFindBy(accessibility = "Login Menu Item")
-    private WebElement loginMenuItem;
+    private WebElement logInMenuItem;
+
+    @AndroidFindBy(accessibility = "Logout Menu Item")
+    private WebElement logOutMenuItem;
 
     public MenuPage(AndroidDriver driver) {
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+        super(driver);
     }
 
     public void openHamburgerMenu() {
-        hamburgerMenu.click();
+        WaitUtils.waitForClickability(driver, hamburgerMenu, 3000).click();
     }
 
     public void goToLoginPage() {
         openHamburgerMenu();
-        loginMenuItem.click();
+        WaitUtils.waitForClickability(driver, logInMenuItem, 3000).click();
     }
 }

@@ -20,5 +20,7 @@ public class LoginTest extends BaseTest {
 
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.login("admin", "admin");
+
+        menuPage.openHamburgerMenu();
     }
 }

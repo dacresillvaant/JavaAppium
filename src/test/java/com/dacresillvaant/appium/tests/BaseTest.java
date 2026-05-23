@@ -1,6 +1,7 @@
 package com.dacresillvaant.appium.tests;
 
 import com.dacresillvaant.appium.driver.DriverFactory;
+import com.dacresillvaant.appium.utils.WaitUtils;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.NoSuchElementException;
@@ -21,16 +22,16 @@ public abstract class BaseTest {
         DriverFactory.quitDriver();
     }
 
+    protected AndroidDriver getDriver() {
+        return (AndroidDriver) DriverFactory.getDriver();
+    }
+
     private void dismissCompatibilityDialog() {
         try {
-            WebElement okButton = DriverFactory.getDriver().findElement(AppiumBy.id("android:id/button1"));
+            WebElement okButton = WaitUtils.waitForClickability(getDriver(), AppiumBy.id("android:id/button1"), 5000);
             okButton.click();
         } catch (NoSuchElementException e) {
             // dialog didn't appear, continue
         }
-    }
-
-    protected AndroidDriver getDriver() {
-        return (AndroidDriver) DriverFactory.getDriver();
     }
 }
