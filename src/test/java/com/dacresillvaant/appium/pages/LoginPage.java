@@ -16,6 +16,12 @@ public class LoginPage extends BasePage {
     @AndroidFindBy(id = "com.saucelabs.mydemoapp.android:id/loginBtn")
     private WebElement loginButton;
 
+    @AndroidFindBy(id = "com.saucelabs.mydemoapp.android:id/nameErrorTV")
+    private WebElement loginErrorLabel;
+
+    @AndroidFindBy(id = "com.saucelabs.mydemoapp.android:id/passwordErrorTV")
+    private WebElement passwordErrorLabel;
+
     public LoginPage(AndroidDriver driver) {
         super(driver);
     }
@@ -38,5 +44,12 @@ public class LoginPage extends BasePage {
         enterUsername(username);
         enterPassword(password);
         tapLoginButton();
+    }
+
+    public String getPasswordErrorLabel() {
+        return WaitUtils.waitForVisibility(driver, passwordErrorLabel, 3000).getText();
+    }
+    public String getUsernameErrorLabel() {
+        return WaitUtils.waitForVisibility(driver, loginErrorLabel, 3000).getText();
     }
 }

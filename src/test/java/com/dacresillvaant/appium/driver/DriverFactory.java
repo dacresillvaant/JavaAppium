@@ -26,15 +26,29 @@ public class DriverFactory {
         options.setAutoGrantPermissions(true);
         options.setNewCommandTimeout(Duration.ofSeconds(60));
 
-        try {
-            log.info("Creating Android Driver");
-            driver.set(new AndroidDriver(URI.create("http://127.0.0.1:4723").toURL(), options));
-            log.info("Android Driver created");
-        } catch (MalformedURLException e) {
-            log.error("Make sure that Appium server has been started and the URL is correct");
-            throw new RuntimeException("Appium server URL is invalid", e);
-        } catch (Exception e) {
-            log.error("Failed to create Android driver", e);
+        int attempts = 3;
+        while (attempts > 0) {
+            try {
+                log.info("Creating Android Driver, attempts left: {}", attempts);
+                driver.set(new AndroidDriver(URI.create("http://127.0.0.1:4723").toURL(), options));
+                log.info("Android Driver created");
+                return;
+            } catch (MalformedURLException e) {
+                log.error("Make sure that Appium server has been started and the URL is correct");
+                throw new RuntimeException("Appium server URL is invalid", e);
+            } catch (Exception e) {
+                attempts--;
+                if (attempts == 0) {
+                    log.error("Failed to create Android driver after all attempts", e);
+                    throw new RuntimeException("Failed to create Android driver", e);
+                }
+                log.warn("Failed to create driver, retrying... attempts left: {}", attempts);
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            }
         }
     }
 
