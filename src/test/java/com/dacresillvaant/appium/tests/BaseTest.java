@@ -1,14 +1,15 @@
 package com.dacresillvaant.appium.tests;
 
 import com.dacresillvaant.appium.driver.DriverFactory;
-import com.dacresillvaant.appium.utils.WaitUtils;
-import io.appium.java_client.AppiumBy;
+import com.dacresillvaant.appium.listeners.TestListener;
+import com.dacresillvaant.appium.pages.DialogPage;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 
+@Listeners(TestListener.class)
 public abstract class BaseTest {
 
     @BeforeMethod
@@ -27,9 +28,10 @@ public abstract class BaseTest {
     }
 
     private void dismissCompatibilityDialog() {
+        DialogPage dialogPage = new DialogPage(getDriver());
+
         try {
-            WebElement okButton = WaitUtils.waitForClickability(getDriver(), AppiumBy.id("android:id/button1"), 5000);
-            okButton.click();
+            dialogPage.tapPositiveButton();
         } catch (NoSuchElementException e) {
             // dialog didn't appear, continue
         }
