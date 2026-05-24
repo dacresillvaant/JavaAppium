@@ -1,6 +1,7 @@
 package com.dacresillvaant.appium.pages;
 
 import com.dacresillvaant.appium.utils.WaitUtils;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,15 @@ public abstract class BasePage {
         } catch (NoSuchElementException e) {
             return false;
         }
+    }
+
+    protected void scrollToBottom(WebDriver driver, int numberOfMaxSwipes) {
+        driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(%d)".formatted(numberOfMaxSwipes)));
+    }
+
+
+    protected void navigateBack(WebDriver driver) {
+        driver.navigate().back();
     }
 
     protected void tap(WebDriver driver, WebElement element, int millis) {

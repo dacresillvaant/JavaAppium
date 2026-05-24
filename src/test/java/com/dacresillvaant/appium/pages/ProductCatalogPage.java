@@ -43,4 +43,8 @@ public class ProductCatalogPage extends BasePage {
                 .map(WebElement::getText)
                 .toList();
     }
+
+    public void openProductByIndex(int index) {
+        tap(driver, productImages.get(index), 3000);
+    }
 }

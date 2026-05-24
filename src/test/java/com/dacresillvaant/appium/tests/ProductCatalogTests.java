@@ -6,6 +6,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+/**
+ * This test could be done with single driver initialization - possible refactor later on
+ */
 public class ProductCatalogTests extends BaseTest {
 
     private ProductCatalogPage productCatalogPage;
