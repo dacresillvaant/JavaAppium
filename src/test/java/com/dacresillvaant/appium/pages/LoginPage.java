@@ -37,7 +37,7 @@ public class LoginPage extends BasePage {
     }
 
     public void tapLoginButton() {
-        WaitUtils.waitForClickability(driver, loginButton, 3000).click();
+        tap(driver, loginButton, 3000);
     }
 
     public void login(String username, String password) {

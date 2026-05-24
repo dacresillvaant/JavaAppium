@@ -1,6 +1,5 @@
 package com.dacresillvaant.appium.pages;
 
-import com.dacresillvaant.appium.utils.WaitUtils;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.WebElement;
@@ -29,15 +28,15 @@ public class MenuPage extends BasePage {
     }
 
     public void openHamburgerMenu() {
-        WaitUtils.waitForClickability(driver, hamburgerMenu, 3000).click();
+        tap(driver, hamburgerMenu, 3000);
     }
 
     public void goToLoginPage() {
         openHamburgerMenu();
-        WaitUtils.waitForClickability(driver, logInMenuItem, 3000).click();
+        tap(driver, logInMenuItem, 3000);
     }
 
     public void tapLogOut() {
-        WaitUtils.waitForClickability(driver, logOutMenuItem, 3000).click();
+        tap(driver, logOutMenuItem, 3000);
     }
 }
