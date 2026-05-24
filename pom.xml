@@ -16,14 +16,13 @@
       <maven.compiler.target>21</maven.compiler.target>
 
       <!-- Acts as a default suite file if none is passed in mvn -Dsuite.file=sample.xml command -->
-      <suite.file>testng.xml</suite.file>
+      <suite.file>default_suite.xml</suite.file>
 
       <appium.version>10.1.1</appium.version>
       <testng.version>7.12.0</testng.version>
       <slf4j.version>2.0.18</slf4j.version>
       <maven.surefire.version>3.5.5</maven.surefire.version>
       <lombok.version>1.18.46</lombok.version>
-
   </properties>
 
   <dependencies>
