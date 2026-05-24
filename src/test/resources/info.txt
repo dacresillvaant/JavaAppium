@@ -41,3 +41,7 @@ appium - leave it running in terminal
 
 10. Download Appium inspector
 https://github.com/appium/appium-inspector/releases
+
+###### EVERY TIME BEFORE RUNNING TESTS ######
+1. Start the emulator (if not running) - open Android Studio, open device manager, start the virtual device you created
+2. Start Appium server (if not running) - appium command in terminal

@@ -15,6 +15,9 @@ public class DriverFactory {
 
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
+    private static final String APPIUM_URL = "http://127.0.0.1:4723";
+    private static final String APPLICATION_PATH = "src/test/resources/sample_app.apk";
+
     public static WebDriver getDriver() {
         return driver.get();
     }
@@ -22,15 +25,15 @@ public class DriverFactory {
     public static void createAndroidDriver() {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName("Android Emulator");
-        options.setApp(Paths.get("src/test/resources/sample_app.apk").toAbsolutePath().toString());
+        options.setApp(Paths.get(APPLICATION_PATH).toAbsolutePath().toString());
         options.setAutoGrantPermissions(true);
-        options.setNewCommandTimeout(Duration.ofSeconds(60));
+        options.setNewCommandTimeout(Duration.ofSeconds(30));
 
         int attempts = 3;
         while (attempts > 0) {
             try {
                 log.info("Creating Android Driver, attempts left: {}", attempts);
-                driver.set(new AndroidDriver(URI.create("http://127.0.0.1:4723").toURL(), options));
+                driver.set(new AndroidDriver(URI.create(APPIUM_URL).toURL(), options));
                 log.info("Android Driver created");
                 return;
             } catch (MalformedURLException e) {

@@ -1,5 +1,6 @@
 package com.dacresillvaant.appium.tests;
 
+import com.dacresillvaant.appium.dataproviders.TestData;
 import com.dacresillvaant.appium.pages.DialogPage;
 import com.dacresillvaant.appium.pages.LoginPage;
 import com.dacresillvaant.appium.pages.MenuPage;
@@ -22,11 +23,12 @@ public class LoginTests extends BaseTest {
         dialogPage = new DialogPage(getDriver());
     }
 
-    @Test(testName = "Should successfully log in and check that 'Log out' menu item is visible", retryAnalyzer = RetryAnalyzer.class)
-    public void testSuccessfulLogin() {
+    @Test(testName = "Should successfully log in and check that 'Log out' menu item is visible",
+            dataProviderClass = TestData.class, dataProvider = "loginDataProvider", retryAnalyzer = RetryAnalyzer.class)
+    public void testSuccessfulLogin(TestData.LoginData loginData) {
 //      when
         menuPage.goToLoginPage();
-        loginPage.login("admin", "admin");
+        loginPage.login(loginData.username(), loginData.password());
         menuPage.openHamburgerMenu();
 
 //      expect
