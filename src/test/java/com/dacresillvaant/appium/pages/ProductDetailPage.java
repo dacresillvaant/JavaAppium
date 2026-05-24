@@ -1,9 +1,9 @@
 package com.dacresillvaant.appium.pages;
 
+import com.dacresillvaant.appium.utils.WaitUtils;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import lombok.Getter;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class ProductDetailPage extends BasePage{
@@ -43,20 +43,20 @@ public class ProductDetailPage extends BasePage{
         super(driver);
     }
 
-    public void goBack(WebDriver driver) {
-        navigateBack(driver);
+    public void goBack() {
+        navigateBack();
     }
 
     public String getProductTitle() {
-        return productTitle.getText();
+        return WaitUtils.waitForVisibility(driver, productTitle, 3000).getText();
     }
 
     public String getProductPrice() {
-        return productPrice.getText();
+        return WaitUtils.waitForVisibility(driver, productPrice, 3000).getText();
     }
 
     public String getQuantity() {
-        return quantityLabel.getText();
+        return WaitUtils.waitForVisibility(driver, quantityLabel, 3000).getText();
     }
 
     public boolean isProductImageDisplayed() {
@@ -72,19 +72,19 @@ public class ProductDetailPage extends BasePage{
     }
 
     public boolean isProductDescriptionDisplayed() {
-        scrollToBottom(driver, 5);
+        scrollToBottom(5);
         return isDisplayed(productDescription);
     }
 
     public void tapAddToCart() {
-        tap(driver, addToCartButton, 3000);
+        tap(addToCartButton, 3000);
     }
 
     public void increaseQuantity() {
-        tap(driver, plusButton, 3000);
+        tap(plusButton, 3000);
     }
 
     public void decreaseQuantity() {
-        tap(driver, minusButton, 3000);
+        tap(minusButton, 3000);
     }
 }

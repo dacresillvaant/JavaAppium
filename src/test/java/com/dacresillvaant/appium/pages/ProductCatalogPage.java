@@ -45,6 +45,6 @@ public class ProductCatalogPage extends BasePage {
     }
 
     public void openProductByIndex(int index) {
-        tap(driver, productImages.get(index), 3000);
+        tap(productImages.get(index), 3000);
     }
 }

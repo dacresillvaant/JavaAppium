@@ -28,15 +28,15 @@ public class MenuPage extends BasePage {
     }
 
     public void openHamburgerMenu() {
-        tap(driver, hamburgerMenu, 3000);
+        tap(hamburgerMenu, 3000);
     }
 
     public void goToLoginPage() {
         openHamburgerMenu();
-        tap(driver, logInMenuItem, 3000);
+        tap(logInMenuItem, 3000);
     }
 
     public void tapLogOut() {
-        tap(driver, logOutMenuItem, 3000);
+        tap(logOutMenuItem, 3000);
     }
 }
