@@ -3,6 +3,7 @@ package com.dacresillvaant.appium.tests;
 import com.dacresillvaant.appium.pages.DialogPage;
 import com.dacresillvaant.appium.pages.LoginPage;
 import com.dacresillvaant.appium.pages.MenuPage;
+import com.dacresillvaant.appium.retryanalyzer.RetryAnalyzer;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -21,7 +22,7 @@ public class LoginTests extends BaseTest {
         dialogPage = new DialogPage(getDriver());
     }
 
-    @Test(testName = "Should successfully log in and check that 'Log out' menu item is visible")
+    @Test(testName = "Should successfully log in and check that 'Log out' menu item is visible", retryAnalyzer = RetryAnalyzer.class)
     public void testSuccessfulLogin() {
 //      when
         menuPage.goToLoginPage();
@@ -32,7 +33,7 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(menuPage.isLogOutMenuItemDisplayed(), "Logout menu item should be visible after successful login");
     }
 
-    @Test(testName = "Should return 'Sorry this user has been locked out.' for locked out username")
+    @Test(testName = "Should return 'Sorry this user has been locked out.' for locked out username", retryAnalyzer = RetryAnalyzer.class)
     public void testLockedUsernameLogin() {
 //      given
         String lockedUsername = "alice@example.com";
@@ -46,7 +47,7 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(loginPage.getPasswordErrorLabel(), "Sorry this user has been locked out.", "Error message mismatch");
     }
 
-    @Test(testName = "Should check username and password fields validation message")
+    @Test(testName = "Should check username and password fields validation message", retryAnalyzer = RetryAnalyzer.class)
     public void testUsernameAndPasswordFieldsValidation() {
 //      given
         SoftAssert softAssert = new SoftAssert();
@@ -70,7 +71,7 @@ public class LoginTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(testName = "Should successfully log out and check that 'Log in' menu item is visible")
+    @Test(testName = "Should successfully log out and check that 'Log in' menu item is visible", retryAnalyzer = RetryAnalyzer.class)
     public void testSuccessfulLogOut() {
 //      when
         menuPage.goToLoginPage();
