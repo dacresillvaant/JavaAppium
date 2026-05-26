@@ -1,5 +1,6 @@
 package com.dacresillvaant.appium.listeners;
 
+import com.dacresillvaant.appium.utils.ScreenshotUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -13,12 +14,8 @@ public class TestListener implements ITestListener {
     }
 
     @Override
-    public void onTestSuccess(ITestResult iTestResult) {
-        log.info("Finishing test: {}", iTestResult.getName());
-    }
-
-    @Override
     public void onTestFailure(ITestResult iTestResult) {
         log.info("Test failure: {}", iTestResult.getName());
+        ScreenshotUtils.takeScreenShot(iTestResult.getName());
     }
 }

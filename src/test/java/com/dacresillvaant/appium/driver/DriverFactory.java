@@ -1,5 +1,6 @@
 package com.dacresillvaant.appium.driver;
 
+import com.dacresillvaant.appium.utils.WaitUtils;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import lombok.extern.slf4j.Slf4j;
@@ -46,11 +47,7 @@ public class DriverFactory {
                     throw new RuntimeException("Failed to create Android driver", e);
                 }
                 log.warn("Failed to create driver, retrying... attempts left: {}", attempts);
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException ie) {
-                    Thread.currentThread().interrupt();
-                }
+                WaitUtils.sleep(3000);
             }
         }
     }
