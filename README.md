@@ -44,8 +44,11 @@ This project demonstrates a test automation framework showcasing best practices 
 | │       │   ├── utils/         # Utilities (wait strategies, helpers)
 | │       │   └── tests/         # Test classes
 | │       └── resources/         # Test configs, suite files
+| ├── target/
+| │   ├── allure-results/   # Allure test results
+| │   └── allure-report/    # Allure test report
 | ├── pom.xml
-| └── allure-results/  # Allure test reports
+| └── README.md
 ```
 
 ## 🚀 Getting Started
