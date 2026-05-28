@@ -16,13 +16,16 @@
       <maven.compiler.target>21</maven.compiler.target>
 
       <!-- Acts as a default suite file if none is passed in mvn -Dsuite.file=sample.xml command -->
-      <suite.file>default_suite.xml</suite.file>
+      <suite.file>src/test/resources/suitefiles/default_suite.xml</suite.file>
 
       <appium.version>10.1.1</appium.version>
       <testng.version>7.12.0</testng.version>
       <logback.version>1.5.32</logback.version>
       <maven.surefire.version>3.5.5</maven.surefire.version>
       <lombok.version>1.18.46</lombok.version>
+      <allure.version>2.35.1</allure.version>
+      <maven.allure.version>3.0.1</maven.allure.version>
+      <aspect.jweaver.version>1.9.25.1</aspect.jweaver.version>
   </properties>
 
   <dependencies>
@@ -54,6 +57,14 @@
           <artifactId>lombok</artifactId>
           <version>${lombok.version}</version>
       </dependency>
+
+      <!-- Source: https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
+      <dependency>
+          <groupId>io.qameta.allure</groupId>
+          <artifactId>allure-testng</artifactId>
+          <version>${allure.version}</version>
+          <scope>compile</scope>
+      </dependency>
   </dependencies>
 
     <build>
@@ -66,7 +77,35 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>${suite.file}</suiteXmlFile>
                     </suiteXmlFiles>
+                    <systemPropertyVariables>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                    </systemPropertyVariables>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${maven.allure.version}</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
+                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+                    <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>allure-report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>allure-results</id>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

@@ -21,10 +21,10 @@ public class DialogPage extends BasePage {
     }
 
     public void tapPositiveButton() {
-        WaitUtils.waitForClickability(driver, positiveButton, 3000).click();
+        WaitUtils.waitForClickability(driver, positiveButton, 5000).click();
     }
 
     public void tapNegativeButton() {
-        WaitUtils.waitForClickability(driver, negativeButton, 3000).click();
+        WaitUtils.waitForClickability(driver, negativeButton, 5000).click();
     }
 }
