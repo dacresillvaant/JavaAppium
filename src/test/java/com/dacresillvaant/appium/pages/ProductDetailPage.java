@@ -60,20 +60,20 @@ public class ProductDetailPage extends BasePage{
     }
 
     public boolean isProductImageDisplayed() {
-        return isDisplayed(productImage);
+        return isDisplayed(productImage, 3000);
     }
 
     public boolean isColorPickerDisplayed() {
-        return isDisplayed(colorPicker);
+        return isDisplayed(colorPicker, 3000);
     }
 
     public boolean isAddToCartButtonDisplayed() {
-        return isDisplayed(addToCartButton);
+        return isDisplayed(addToCartButton, 3000);
     }
 
     public boolean isProductDescriptionDisplayed() {
         scrollToBottom(5);
-        return isDisplayed(productDescription);
+        return isDisplayed(productDescription, 3000);
     }
 
     public void tapAddToCart() {

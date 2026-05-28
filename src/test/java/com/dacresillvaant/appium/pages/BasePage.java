@@ -19,8 +19,9 @@ public abstract class BasePage {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    protected boolean isDisplayed(WebElement element) {
+    protected boolean isDisplayed(WebElement element, int millis) {
         try {
+            WaitUtils.waitForVisibility(driver, element, millis);
             return element.isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
@@ -39,5 +40,9 @@ public abstract class BasePage {
     protected void tap(WebElement element, int millis) {
         log.info("Tapping on element: {}", element);
         WaitUtils.waitForClickability(driver, element, millis).click();
+    }
+
+    protected String getText(WebElement element, int millis) {
+        return WaitUtils.waitForVisibility(driver, element, millis).getText();
     }
 }

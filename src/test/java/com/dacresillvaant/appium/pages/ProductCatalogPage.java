@@ -25,7 +25,7 @@ public class ProductCatalogPage extends BasePage {
     }
 
     public boolean isProductListDisplayed() {
-        return isDisplayed(productsLabel);
+        return isDisplayed(productsLabel, 3000);
     }
 
     public int getProductCount() {

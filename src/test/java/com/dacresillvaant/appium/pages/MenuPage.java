@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 
 public class MenuPage extends BasePage {
 
+    @AndroidFindBy(accessibility = "View cart")
+    private WebElement cartIcon;
+
     @AndroidFindBy(accessibility = "View menu")
     private WebElement hamburgerMenu;
 
@@ -20,11 +23,15 @@ public class MenuPage extends BasePage {
     }
 
     public boolean isLogOutMenuItemDisplayed() {
-        return isDisplayed(logOutMenuItem);
+        return isDisplayed(logOutMenuItem, 3000);
     }
 
     public boolean isLogInMenuItemDisplayed() {
-        return isDisplayed(logInMenuItem);
+        return isDisplayed(logInMenuItem, 3000);
+    }
+
+    public void openCart() {
+        tap(cartIcon, 3000);
     }
 
     public void openHamburgerMenu() {
