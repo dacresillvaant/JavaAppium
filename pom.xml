@@ -23,9 +23,11 @@
       <logback.version>1.5.32</logback.version>
       <maven.surefire.version>3.5.5</maven.surefire.version>
       <lombok.version>1.18.46</lombok.version>
+
+      <!-- For Allure reports -->
       <allure.version>2.35.1</allure.version>
       <maven.allure.version>3.0.1</maven.allure.version>
-      <aspect.jweaver.version>1.9.25.1</aspect.jweaver.version>
+      <aspectj.version>1.9.25.1</aspectj.version>
   </properties>
 
   <dependencies>
@@ -63,7 +65,7 @@
           <groupId>io.qameta.allure</groupId>
           <artifactId>allure-testng</artifactId>
           <version>${allure.version}</version>
-          <scope>compile</scope>
+          <scope>test</scope>
       </dependency>
   </dependencies>
 
@@ -74,13 +76,25 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.version}</version>
                 <configuration>
+                    <argLine>
+                        -Dfile.encoding=${project.build.sourceEncoding}
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
                     <suiteXmlFiles>
                         <suiteXmlFile>${suite.file}</suiteXmlFile>
                     </suiteXmlFiles>
                     <systemPropertyVariables>
+                        <!-- Sets directory for created test results -->
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                     </systemPropertyVariables>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <plugin>
@@ -92,20 +106,6 @@
                     <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
                     <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>allure-report</id>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>allure-results</id>
-                        <goals>
-                            <goal>aggregate</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
