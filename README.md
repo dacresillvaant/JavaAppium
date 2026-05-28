@@ -24,6 +24,7 @@ This project demonstrates a test automation framework showcasing best practices 
 - **Soft & Hard Assertions** - Flexible test validation
 - **Test Listeners** - Custom test lifecycle hooks (setup, teardown, reporting)
 - **Retry Analyzer** - Automatic flaky test retry logic
+- **Data Providers** - Parameterized tests with external test data
 - **Structured Logging** - Comprehensive test execution logs
 - **Allure Integration** - Rich HTML test reports with screenshots and attachments
 - **Maven Suite Files** - Flexible test grouping and execution
@@ -31,21 +32,20 @@ This project demonstrates a test automation framework showcasing best practices 
 ## 📁 Project Structure
 
 ```
-JavaAppium/
-├── src/
-│   ├── main/
-│   │   └── java/com/dacresillvaant/appium/
-│   │       ├── base/          # BasePage, BaseTest abstractions
-│   │       ├── driver/        # DriverFactory, driver configuration
-│   │       ├── pages/         # Page Object classes
-│   │       ├── listeners/     # TestNG listeners
-│   │       ├── retryanalyzer/ # Retry logic
-│   │       └── utils/         # Utilities (wait strategies, helpers)
-│   └── test/
-│       ├── java/com/dacresillvaant/appium/tests/  # Test classes
-│       └── resources/                              # Test configs, suite files
-├── pom.xml
-└── allure-results/  # Allure test reports
+| JavaAppium/
+| ├── src/
+| │   └── test/
+| │       ├── java/com/dacresillvaant/appium/
+| │       │   ├── driver/        # DriverFactory, driver configuration
+| │       │   ├── pages/         # Page Object classes
+| │       │   ├── listeners/     # TestNG listeners
+| │       │   ├── retryanalyzer/ # Retry logic
+| │       │   ├── dataproviders/ # TestNG data providers
+| │       │   ├── utils/         # Utilities (wait strategies, helpers)
+| │       │   └── tests/         # Test classes
+| │       └── resources/         # Test configs, suite files
+| ├── pom.xml
+| └── allure-results/  # Allure test reports
 ```
 
 ## 🚀 Getting Started
