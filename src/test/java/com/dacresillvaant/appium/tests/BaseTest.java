@@ -5,17 +5,14 @@ import com.dacresillvaant.appium.listeners.TestListener;
 import com.dacresillvaant.appium.pages.DialogPage;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.NoSuchElementException;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 @Listeners(TestListener.class)
 public abstract class BaseTest {
 
     @BeforeMethod
     @Parameters({"udid", "emulatorPort"})
-    public void setUp(String udid, int emulatorPort) {
+    public void setUp(@Optional("emulator-5554") String udid, @Optional("8200") int emulatorPort) {
         DriverFactory.createAndroidDriver(udid, emulatorPort);
         dismissCompatibilityDialog(); // Sauce Labs demo app triggers this dialog
     }
