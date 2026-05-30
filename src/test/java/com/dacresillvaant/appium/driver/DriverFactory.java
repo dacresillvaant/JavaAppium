@@ -23,9 +23,11 @@ public class DriverFactory {
         return driver.get();
     }
 
-    public static void createAndroidDriver() {
+    public static void createAndroidDriver(String udid, int emulatorPort) {
         UiAutomator2Options options = new UiAutomator2Options();
-        options.setDeviceName("Android Emulator");
+        options.setUdid(udid);
+        options.setDeviceName("Android Emulator ".concat(udid));
+        options.setSystemPort(emulatorPort);
         options.setApp(Paths.get(APPLICATION_PATH).toAbsolutePath().toString());
         options.setAutoGrantPermissions(true);
         options.setNewCommandTimeout(Duration.ofSeconds(30));
@@ -35,7 +37,7 @@ public class DriverFactory {
             try {
                 log.info("Creating Android Driver, attempts left: {}", attempts);
                 driver.set(new AndroidDriver(URI.create(APPIUM_URL).toURL(), options));
-                log.info("Android Driver created");
+                log.info("Android Driver for {} on {} port created", udid,  emulatorPort);
                 return;
             } catch (MalformedURLException e) {
                 log.error("Make sure that Appium server has been started and the URL is correct");
@@ -43,10 +45,10 @@ public class DriverFactory {
             } catch (Exception e) {
                 attempts--;
                 if (attempts == 0) {
-                    log.error("Failed to create Android driver after all attempts", e);
+                    log.error("Failed to create Android Driver for {} on {} port after all attempts", udid, emulatorPort, e);
                     throw new RuntimeException("Failed to create Android driver", e);
                 }
-                log.warn("Failed to create driver, retrying... attempts left: {}", attempts);
+                log.warn("Failed to create driver for {} on {} port, retrying... attempts left: {}", udid, emulatorPort, attempts);
                 WaitUtils.sleep(3000);
             }
         }

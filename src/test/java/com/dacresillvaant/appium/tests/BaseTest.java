@@ -8,13 +8,15 @@ import org.openqa.selenium.NoSuchElementException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
+import org.testng.annotations.Parameters;
 
 @Listeners(TestListener.class)
 public abstract class BaseTest {
 
     @BeforeMethod
-    public void setUp() {
-        DriverFactory.createAndroidDriver();
+    @Parameters({"udid", "emulatorPort"})
+    public void setUp(String udid, int emulatorPort) {
+        DriverFactory.createAndroidDriver(udid, emulatorPort);
         dismissCompatibilityDialog(); // Sauce Labs demo app triggers this dialog
     }
 

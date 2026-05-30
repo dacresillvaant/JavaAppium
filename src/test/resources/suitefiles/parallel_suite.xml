@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="ParallelSuite" parallel="tests" thread-count="2">
+
+    <test name="Device1-Tests">
+        <parameter name="udid" value="emulator-5554"/>
+        <parameter name="emulatorPort" value="8200"/>
+        <classes>
+            <class name="com.dacresillvaant.appium.tests.CartTests"/>
+            <class name="com.dacresillvaant.appium.tests.LoginTests"/>
+        </classes>
+    </test>
+
+    <test name="Device2-Tests">
+        <parameter name="udid" value="emulator-5556"/>
+        <parameter name="emulatorPort" value="8201"/>
+        <classes>
+            <class name="com.dacresillvaant.appium.tests.ProductCatalogTests"/>
+            <class name="com.dacresillvaant.appium.tests.ProductDetailTests"/>
+        </classes>
+    </test>
+</suite>
