@@ -3,6 +3,8 @@
 <suite name="Default Test Suite">
 
     <test name="All Tests">
+        <parameter name="udid" value="emulator-5554"/>
+        <parameter name="emulatorPort" value="8200"/>
         <packages>
             <package name="com.dacresillvaant.appium.tests.*" />
         </packages>

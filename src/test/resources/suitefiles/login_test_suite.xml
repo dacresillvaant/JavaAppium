@@ -2,8 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Login Tests Suite">
 
-<!--   mvn test -Dsuite.file=src/test/resources/suitefiles/login_test_suite.xml   -->
     <test name="Login tests">
+        <parameter name="udid" value="emulator-5554"/>
+        <parameter name="emulatorPort" value="8200"/>
         <classes>
             <class name="com.dacresillvaant.appium.tests.LoginTests" />
         </classes>

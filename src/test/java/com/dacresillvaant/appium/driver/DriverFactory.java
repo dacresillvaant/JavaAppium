@@ -17,7 +17,7 @@ public class DriverFactory {
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     private static final String APPIUM_URL = "http://127.0.0.1:4723";
-    private static final String APPLICATION_PATH = "src/test/resources/sample_app.apk";
+    private static final String APPLICATION_PATH = "src/test/resources/app/sample_app.apk";
 
     public static WebDriver getDriver() {
         return driver.get();
