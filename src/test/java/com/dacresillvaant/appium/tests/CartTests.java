@@ -6,11 +6,16 @@ import com.dacresillvaant.appium.pages.MenuPage;
 import com.dacresillvaant.appium.pages.ProductCatalogPage;
 import com.dacresillvaant.appium.pages.ProductDetailPage;
 import com.dacresillvaant.appium.retryanalyzer.RetryAnalyzer;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Epic("Mobile Android Tests")
+@Feature("Cart Functionality Tests")
 @Listeners(TestListener.class)
 public class CartTests extends BaseTest {
 
@@ -27,6 +32,7 @@ public class CartTests extends BaseTest {
         menuPage = new MenuPage(getDriver());
     }
 
+    @Story("Correct product name")
     @Test(testName = "Should display correct product name in cart", retryAnalyzer = RetryAnalyzer.class)
     public void testProductNameInCart() {
 //      given
@@ -42,6 +48,7 @@ public class CartTests extends BaseTest {
         Assert.assertEquals(actualProductName, expectedProductName, "Product name is incorrect.");
     }
 
+    @Story("Correct product price")
     @Test(testName = "Should display correct product price in cart", retryAnalyzer = RetryAnalyzer.class)
     public void testProductPriceInCart() {
 //      given
@@ -57,6 +64,7 @@ public class CartTests extends BaseTest {
         Assert.assertEquals(expectedProductPrice, actualProductPrice, "Product price is incorrect.");
     }
 
+    @Story("Proceed to checkout is visible")
     @Test(testName = "Should display proceed to checkout button", retryAnalyzer = RetryAnalyzer.class)
     public void testProceedToCheckoutButtonIsDisplayed() {
 //      given
@@ -71,6 +79,7 @@ public class CartTests extends BaseTest {
         Assert.assertTrue(isProceedToCheckoutButtonDisplayed, "Proceed to checkout button should be displayed.");
     }
 
+    @Story("Remove product from cart")
     @Test(testName = "Should remove product from cart", retryAnalyzer = RetryAnalyzer.class)
     public void testRemoveProductFromCart() {
 //      given
@@ -86,6 +95,7 @@ public class CartTests extends BaseTest {
         Assert.assertTrue(isNoItemsDisplayed, "No items label should be displayed.");
     }
 
+    @Story("Increase product quantity")
     @Test(testName = "Should increase product quantity in cart", retryAnalyzer = RetryAnalyzer.class)
     public void testIncreaseQuantityInCart() {
 //      given
@@ -102,6 +112,7 @@ public class CartTests extends BaseTest {
         Assert.assertEquals(increasedQuantity, initialQuantity + 1, "Product quantity should be increased by 1.");
     }
 
+    @Story("Decrease product quantity")
     @Test(testName = "Should decrease product quantity in cart", retryAnalyzer = RetryAnalyzer.class)
     public void testDecreaseQuantityInCart() {
 //      given

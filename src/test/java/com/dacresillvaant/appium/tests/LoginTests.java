@@ -1,15 +1,23 @@
 package com.dacresillvaant.appium.tests;
 
 import com.dacresillvaant.appium.dataproviders.TestData;
+import com.dacresillvaant.appium.listeners.TestListener;
 import com.dacresillvaant.appium.pages.DialogPage;
 import com.dacresillvaant.appium.pages.LoginPage;
 import com.dacresillvaant.appium.pages.MenuPage;
 import com.dacresillvaant.appium.retryanalyzer.RetryAnalyzer;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+@Epic("Mobile Android Tests")
+@Feature("Login Functionality Tests")
+@Listeners(TestListener.class)
 public class LoginTests extends BaseTest {
 
     private MenuPage menuPage;
@@ -23,6 +31,7 @@ public class LoginTests extends BaseTest {
         dialogPage = new DialogPage(getDriver());
     }
 
+    @Story("Successful login")
     @Test(testName = "Should successfully log in and check that 'Log out' menu item is visible",
             dataProviderClass = TestData.class, dataProvider = "loginDataProvider", retryAnalyzer = RetryAnalyzer.class)
     public void testSuccessfulLogin(TestData.LoginData loginData) {
@@ -35,6 +44,7 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(menuPage.isLogOutMenuItemDisplayed(), "Logout menu item should be visible after successful login");
     }
 
+    @Story("Locked out user login")
     @Test(testName = "Should return 'Sorry this user has been locked out.' for locked out username", retryAnalyzer = RetryAnalyzer.class)
     public void testLockedUsernameLogin() {
 //      given
@@ -49,6 +59,7 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(loginPage.getPasswordErrorLabel(), "Sorry this user has been locked out.", "Error message mismatch");
     }
 
+    @Story("Username and password validation")
     @Test(testName = "Should check username and password fields validation message", retryAnalyzer = RetryAnalyzer.class)
     public void testUsernameAndPasswordFieldsValidation() {
 //      given
@@ -73,6 +84,7 @@ public class LoginTests extends BaseTest {
         softAssert.assertAll();
     }
 
+    @Story("Successful logout")
     @Test(testName = "Should successfully log out and check that 'Log in' menu item is visible", retryAnalyzer = RetryAnalyzer.class)
     public void testSuccessfulLogOut() {
 //      when

@@ -2,6 +2,7 @@ package com.dacresillvaant.appium.utils;
 
 import com.dacresillvaant.appium.driver.DriverFactory;
 import io.appium.java_client.android.AndroidDriver;
+import io.qameta.allure.Allure;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,6 +29,7 @@ public class ScreenshotUtils {
             }
 
             File screenshot = driver.getScreenshotAs(FILE);
+            Allure.addAttachment(testName, "image/png", Files.newInputStream(screenshot.toPath()), "png");
             String timeStamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
             String fileName = testName + "_" + timeStamp + ".png";
 

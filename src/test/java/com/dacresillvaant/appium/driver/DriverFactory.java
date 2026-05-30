@@ -30,12 +30,12 @@ public class DriverFactory {
         options.setSystemPort(emulatorPort);
         options.setApp(Paths.get(APPLICATION_PATH).toAbsolutePath().toString());
         options.setAutoGrantPermissions(true);
-        options.setNewCommandTimeout(Duration.ofSeconds(30));
+        options.setNewCommandTimeout(Duration.ofSeconds(15));
 
         int attempts = 3;
         while (attempts > 0) {
             try {
-                log.info("Creating Android Driver, attempts left: {}", attempts);
+                log.info("Creating Android Driver for {} on {} port, attempts left: {}", udid, emulatorPort, attempts);
                 driver.set(new AndroidDriver(URI.create(APPIUM_URL).toURL(), options));
                 log.info("Android Driver for {} on {} port created", udid,  emulatorPort);
                 return;
@@ -59,7 +59,7 @@ public class DriverFactory {
             log.info("Quitting Android Driver");
             driver.get().quit();
             driver.remove();
-            log.info("Android driver quitted");
+            log.info("Android driver quit");
         }
     }
 }
