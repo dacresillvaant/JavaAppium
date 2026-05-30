@@ -19,15 +19,15 @@ This project demonstrates a test automation framework showcasing best practices 
 ## ✨ Key Features
 
 - **Page Object Model (POM)** - Clean separation of test logic and page interactions
-- **Thread-Safe Driver Management** - Support for multiple device configurations
+- **Thread-Safe Driver Management** - Support for multiple device configurations via ThreadLocal
+- **Parallel Test Execution** - Simultaneous testing on multiple Android devices/emulators
 - **Intelligent Wait Strategies** - Explicit waits with custom conditions
 - **Soft & Hard Assertions** - Flexible test validation
 - **Test Listeners** - Custom test lifecycle hooks (setup, teardown, reporting)
 - **Retry Analyzer** - Automatic flaky test retry logic
-- **Data Providers** - Parameterized tests with external test data
-- **Structured Logging** - Comprehensive test execution logs
-- **Allure Integration** - Rich HTML test reports with screenshots and attachments
-- **Maven Suite Files** - Flexible test grouping and execution
+- **Structured Logging** - Comprehensive test execution logs with Logback
+- **Allure Integration** - Rich HTML test reports with screenshots attached on failure
+- **Maven Suite Files** - Flexible test grouping and execution via `-Dsuite.file` parameter
 
 ## 📁 Project Structure
 
@@ -43,7 +43,7 @@ This project demonstrates a test automation framework showcasing best practices 
 | │       │   ├── dataproviders/ # TestNG data providers
 | │       │   ├── utils/         # Utilities (wait strategies, helpers)
 | │       │   └── tests/         # Test classes
-| │       └── resources/         # Test configs, suite files
+| │       └── resources/         # Test configs, suite files, test application APK
 | ├── target/
 | │   ├── allure-results/   # Allure test results
 | │   └── allure-report/    # Allure test report
@@ -54,10 +54,32 @@ This project demonstrates a test automation framework showcasing best practices 
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Java 21+
 - Maven 3.6+
-- Android Emulator or connected Android device
-- Appium Server running
+- Node.js
+- Android Studio with at least one configured emulator
+
+### Install Appium
+
+```bash
+npm install -g appium
+appium driver install uiautomator2
+```
+
+### Start Appium Server
+
+```bash
+appium
+```
+
+### Start Android Emulator
+
+Open Android Studio → Device Manager → start your emulator. Verify it is running:
+
+```bash
+adb devices
+```
 
 ### Run Tests
 
@@ -68,23 +90,26 @@ mvn clean test
 # Run specific suite
 mvn clean test -Dsuite.file=src/test/resources/suitefiles/login_test_suite.xml
 
-# Generate Allure report
-mvn allure:report
+# Run parallel suite on two emulators
+mvn clean test -Dsuite.file=src/test/resources/suitefiles/parallel_suite.xml
+
+# Generate and open Allure report
+mvn allure:serve
 ```
 
 ## 📊 Test Coverage
 
-- **Product Catalog Tests** - Browse, search, filter products
-- **Product Details Tests** - View details, specifications, reviews
-- **Cart Management Tests** - Add/remove items, quantity updates, checkout flow
-- **Authentication Tests** - Login, logout, session management
+- **Authentication Tests** - Login, logout, session management, field validation
+- **Product Catalog Tests** - Product list display, product count, names and prices
+- **Product Detail Tests** - Product information, quantity management, navigation
+- **Cart Tests** - Add/remove items, quantity updates, checkout button visibility
 
-## 📚 Learn More
+## ⚠️ Known Limitations
 
-Detailed documentation and advanced configurations coming soon.
+- Android only — iOS is not supported
+- Requires local Android emulator or connected device
+- Parallel execution requires two running emulators
 
 ---
 
-*A portfolio project showcasing mobile test automation expertise.*  
-*This readme was AI-generated for demonstration purposes - I'm going to improve it later, once I have finished all the functionalities.*
-
+*A portfolio project showcasing mobile test automation expertise.*
